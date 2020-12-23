@@ -56,8 +56,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem 'shoulda', '~> 3.5'
-  gem 'shoulda-matchers', '~> 2.0'
+  gem 'shoulda', '~> 4.0'
+  gem 'shoulda-matchers', '~> 4.0'
   # gem 'rails-controller-testing', '~> 1.0'
 end
 

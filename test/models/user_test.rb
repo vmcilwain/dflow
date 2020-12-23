@@ -12,4 +12,18 @@ class UserTest < ActiveSupport::TestCase
     should validate_presence_of :first_name
     should validate_presence_of :last_name
   end
+
+  should have_many(:roles).through(:permissions)
+
+  test "#has_role?" do
+    permission = create :permission
+    user = permission.user
+
+    assert user.has_role?(permission.role.name.to_sym)
+
+    role = create :role
+    assert_not user.has_role?(role.name.to_sym)
+
+    assert_not user.has_role?(nil)
+  end
 end

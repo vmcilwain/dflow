@@ -5,4 +5,11 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
   
+  has_many :permissions
+  has_many :roles, through: :permissions
+
+  def has_role?(name)
+    roles.map(&:name).include?(name.to_s)
+  end
+  
 end
