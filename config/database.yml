@@ -21,6 +21,14 @@ development:
   <<: *default
   database: dflow_development
 
+# staging:
+#   adapter: postgresql
+#   encoding: unicode
+#   # For details on connection pooling, see Rails configuration guide
+#   # https://guides.rubyonrails.org/configuring.html#database-pooling
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   database: dflow_staging
+
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
@@ -49,7 +57,17 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+  <% if ENV["PIPE_ENV"].present? %>
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: dflow_staging
+  url: <%= ENV['DATABASE_URL'] %>
+  <% else %>
   <<: *default
   database: dflow_production
   username: dflow
   password: <%= ENV['DFLOW_DATABASE_PASSWORD'] %>
+  <% end %>
