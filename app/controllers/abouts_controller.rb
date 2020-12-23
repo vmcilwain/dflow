@@ -24,8 +24,21 @@ class AboutsController < ApplicationController
       end
     end
   end
-  
 
+  def update
+    
+    respond_to do |format|
+      if @about.update(about_params)
+        format.html { redirect_to abouts_path, success: success_message(@about, :updated) }
+        format.js
+      else
+        flash[:error] = error_message
+        format.html { render :edit }
+        format.js
+      end
+    end
+  end
+  
   private
 
   def about
