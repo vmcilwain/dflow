@@ -18,3 +18,5 @@ user = User.create(
 admin_role = Role.create name: "administrator", description: "Site administrators"
 
 admin_role.users << user
+
+About.create title: Faker::Lorem.words(number: 5).join("\s"), body: Faker::Lorem.paragraphs(number: 5).join("<br />")
