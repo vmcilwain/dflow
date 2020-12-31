@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :abouts, only: %I[index new create edit update]
+  get :about, as: :about, to: "pages#about"
+  resources :abouts, only: %i[new create edit update]
 end
