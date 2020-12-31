@@ -1,0 +1,16 @@
+<article class="container">
+  <%= header title: @about.title, separator: true, links: [link_to(:Home, root_path)] %>
+  
+  <main">
+    <section class="row">
+      <section class="col">
+        <p>
+          <%= @about.body %>
+        </p>
+      </section>
+      <section class="col">
+        <%= image_tag Faker::Placeholdit.image(size: '300x300', format: 'gif'), class: "img-thumbnail" %>
+      </section>
+    </section>
+  </main>
+</article>
