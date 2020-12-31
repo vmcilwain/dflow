@@ -1,10 +1,5 @@
 class AboutsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
   before_action :about, only: %i[edit update]
-  
-  def index
-    @about = About.last
-  end
   
   def new
     @about = About.new
@@ -15,7 +10,7 @@ class AboutsController < ApplicationController
      
     respond_to do |format|
       if @about.save
-        format.html { redirect_to abouts_path, success: success_message(@about) }
+        format.html { redirect_to about_path, success: success_message(@about) }
         format.js
       else
         flash[:error] = error_message
@@ -29,7 +24,7 @@ class AboutsController < ApplicationController
     
     respond_to do |format|
       if @about.update(about_params)
-        format.html { redirect_to abouts_path, success: success_message(@about, :updated) }
+        format.html { redirect_to about_path, success: success_message(@about, :updated) }
         format.js
       else
         flash[:error] = error_message
