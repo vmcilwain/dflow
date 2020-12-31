@@ -2,7 +2,7 @@ require "test_helper"
 
 class AboutFlowsTest < ActionDispatch::IntegrationTest
   test "can view about" do
-    get "/abouts"
+    get "/about"
     assert_response :success
   end
 
@@ -20,7 +20,7 @@ class AboutFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert flash[:success].present?
-    assert_template :index
+    assert_template :about
   end
 
   test "prompted with error on failed about creation" do
@@ -52,7 +52,7 @@ class AboutFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert flash[:success].present?
-    assert_template :index
+    assert_template :about
   end
 
   test "prompted with error on failed about edit" do
