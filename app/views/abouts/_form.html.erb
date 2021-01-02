@@ -1,0 +1,18 @@
+<%= form_with model: @about do |f| %>
+  <section class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </section>
+
+  <section class="form-group">
+    <%= f.label :body %>
+    <section class="jumbotron">
+      <%= f.rich_text_area :body%>
+    </section>
+  </section>
+
+  <section>
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to :Back, :back, class: "btn btn-secondary" %>
+  </section>
+<% end %>
