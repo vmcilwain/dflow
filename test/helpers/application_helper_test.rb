@@ -53,7 +53,7 @@ class ApplicationHelperTest < ActionView::TestCase
   test 'should return a header with a description' do
     title = Faker::Lorem.word
     description = Faker::Lorem.paragraph
-    p header(title: title, description: description)
+    
     assert_dom_equal "<header><h1>#{title}</h1><hr />      <p class=\"jumbotron\">\n        #{description}\n      </p>\n</header>", header(title: title, description: description)
   end
 
