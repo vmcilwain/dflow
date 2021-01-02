@@ -1,4 +1,6 @@
 <%= form_with model: @about do |f| %>
+  <%= render "layouts/error_messages", obj: @about %>
+
   <section class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: "form-control" %>
