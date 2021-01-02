@@ -40,6 +40,18 @@ def clear_mailbox
   ActionMailer::Base.deliveries.clear
 end
 
+def add_user_to_role(user, role)
+  role.users << user
+end
+
+def admin_user
+  role = create :role, name: 'administrator'
+  user = create :user
+  add_user_to_role user, role
+  user
+end
+
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :minitest
