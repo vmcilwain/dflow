@@ -64,9 +64,10 @@ class AboutsTest < ApplicationSystemTestCase
 
     assert has_css? ".alert.alert-dismissible.alert-success"
     assert has_content? text
+    assert_equal about_path, current_path
   end
 
-  test "as an administrator, I should be told why an about failed to create" do
+  test "as an administrator, I should be told why an About failed to create" do
     new_session admin_user
 
     visit about_path
@@ -76,5 +77,13 @@ class AboutsTest < ApplicationSystemTestCase
     click_button "Create About"
 
     assert has_css? ".alert.alert-dismissible.alert-danger"
+  end
+
+  test "as an administrator, I can update an existing About" do
+    skip
+  end
+
+  test "as an administrator, I should be told why an About failed to update" do
+    skip
   end
 end
