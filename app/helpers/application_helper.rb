@@ -64,13 +64,11 @@ module ApplicationHelper
       output << "<h1>#{opts[:title]}</h1>"
     end
 
-    opts[:links]&.each do |link|
-      output << link
-    end
+    output << opts[:links].join(" | ") if opts[:links]
     
     output << '<br />' if opts[:links]
 
-    output << '<hr />' if opts[:separator]
+    output << '<hr />' if opts.fetch(:separator){true}
 
     unless opts[:description].blank?
       output << <<-FIN
@@ -84,23 +82,13 @@ module ApplicationHelper
     output.html_safe
   end
   
-  # def header(opts={})
-  #   render 'shared/components/header',  title: opts.fetch(:title){""}.to_s,
-  #                                       description: opts[:description],
-  #                                       links: opts[:links],
-  #                                       separator: opts.fetch(:separator){true}
-  # end
+
 
   # def sub_header(opts={})
   #   render 'shared/components/sub_header',  title: opts.fetch(:title){""}.to_s, 
   #                                           description: opts[:description],
   #                                           links: opts[:links],
   #                                           separator: opts.fetch(:separator){true}
-  # end
-
-  # def table(opts={})
-  #   render 'shared/components/table', headers: opts.fetch(:headers){{}}, 
-  #                                     records: opts.fetch(:records){[]}
   # end
 
   # def search_form(opts={})
