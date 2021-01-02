@@ -50,7 +50,19 @@ class AboutsTest < ApplicationSystemTestCase
     assert_not has_link? :Create
   end
 
-  test "creating an about " do
+  test "as an administrator, I can create an About " do
+    new_session admin_user
+
     visit about_path
+
+    click_link :Create
+
+    text = Faker::Lorem.paragraph
+    fill_in_rich_text_area "about[body]", with: text
+
+    click_button "Create About"
+
+    assert has_css? ".alert.alert-dismissible.alert-success"
+    assert has_content? text
   end
 end
