@@ -65,4 +65,16 @@ class AboutsTest < ApplicationSystemTestCase
     assert has_css? ".alert.alert-dismissible.alert-success"
     assert has_content? text
   end
+
+  test "as an administrator, I should be told why an about failed to create" do
+    new_session admin_user
+
+    visit about_path
+
+    click_link :Create
+
+    click_button "Create About"
+
+    assert has_css? ".alert.alert-dismissible.alert-danger"
+  end
 end
