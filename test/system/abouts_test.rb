@@ -6,7 +6,7 @@ class AboutsTest < ApplicationSystemTestCase
 
     create :about, body: body
     
-    visit about_path
+    visit about_page_path
     
     assert_not has_css? 'header h1'
     assert_not has_link? :Create
@@ -21,7 +21,7 @@ class AboutsTest < ApplicationSystemTestCase
 
     create :about, title: title, body: body
     
-    visit about_path
+    visit about_page_path
     
     assert_selector 'header h1', text: title
     assert_not has_link? :Create
@@ -33,7 +33,7 @@ class AboutsTest < ApplicationSystemTestCase
   test "as an administrator, I have the create link available if there isn't an about previously created" do
     new_session admin_user
 
-    visit about_path
+    visit about_page_path
 
     assert has_link? :Create
     assert_not has_link? :Edit
@@ -44,7 +44,7 @@ class AboutsTest < ApplicationSystemTestCase
 
     new_session admin_user
 
-    visit about_path
+    visit about_page_path
 
     assert has_link? :Edit
     assert_not has_link? :Create
@@ -53,7 +53,7 @@ class AboutsTest < ApplicationSystemTestCase
   test "as an administrator, I can create an About " do
     new_session admin_user
 
-    visit about_path
+    visit about_page_path
 
     click_link :Create
 
@@ -64,13 +64,13 @@ class AboutsTest < ApplicationSystemTestCase
 
     assert has_css? ".alert.alert-dismissible.alert-success"
     assert has_content? text
-    assert_equal about_path, current_path
+    assert_equal about_page_path, current_path
   end
 
   test "as an administrator, I should be told why an About failed to create" do
     new_session admin_user
 
-    visit about_path
+    visit about_page_path
 
     click_link :Create
 
@@ -80,7 +80,20 @@ class AboutsTest < ApplicationSystemTestCase
   end
 
   test "as an administrator, I can update an existing About" do
-    skip
+    create :about
+
+    new_session admin_user
+
+    visit about_page_path
+
+    click_link :Edit
+
+    fill_in_rich_text_area "about[body]", with: Faker::Lorem.paragraph
+
+    click_button "Update About"
+
+    assert has_css? ".alert.alert-dismissible.alert-success"
+    assert_equal about_page_path, current_path
   end
 
   test "as an administrator, I should be told why an About failed to update" do
