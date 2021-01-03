@@ -64,7 +64,6 @@ class AboutsTest < ApplicationSystemTestCase
 
     assert has_css? ".alert.alert-dismissible.alert-success"
     assert has_content? text
-    assert_equal about_page_path, current_path
   end
 
   test "as an administrator, I should be told why an About failed to create" do
@@ -93,10 +92,21 @@ class AboutsTest < ApplicationSystemTestCase
     click_button "Update About"
 
     assert has_css? ".alert.alert-dismissible.alert-success"
-    assert_equal about_page_path, current_path
   end
 
   test "as an administrator, I should be told why an About failed to update" do
-    skip
+    create :about
+
+    new_session admin_user
+
+    visit about_page_path
+
+    click_link :Edit
+
+    fill_in_rich_text_area "about[body]", with: nil
+
+    click_button "Update About"
+
+    assert has_css? ".alert.alert-dismissible.alert-danger"
   end
 end
