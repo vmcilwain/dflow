@@ -2,10 +2,14 @@ class AboutsController < ApplicationController
   before_action :about, only: %i[edit update]
   
   def new
+    authorize About
+    
     @about = About.new
   end
 
   def create
+    authorize About
+
     @about = About.new(about_params)
      
     respond_to do |format|
@@ -37,6 +41,7 @@ class AboutsController < ApplicationController
 
   def about
     @about = About.find params[:id]
+    authorize @about
   end
   
   def about_params

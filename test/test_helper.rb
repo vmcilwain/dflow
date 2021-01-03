@@ -4,13 +4,15 @@ require "rails/test_help"
 # require_relative 'support/system_test_helper'
 require_relative 'support/system_helpers'
 require_relative 'support/integration_helpers'
+require_relative 'support/policy_assertions'
 
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   include ActionView::RecordIdentifier
   include ActionView::Helpers::DateHelper
   include Support::SystemHelpers
-  # include ActionText::SystemTestHelper
+  include Pundit
+  include Support::PolicyAssertions
   
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)

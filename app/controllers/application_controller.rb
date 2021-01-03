@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   add_flash_types :success, :error
 
-  # include Pundit
-  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
