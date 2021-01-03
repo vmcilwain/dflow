@@ -10,7 +10,7 @@ class AboutsController < ApplicationController
      
     respond_to do |format|
       if @about.save
-        format.html { redirect_to about_path, success: success_message(@about) }
+        format.html { redirect_to about_page_path, success: success_message(@about) }
         format.js
       else
         flash[:error] = error_message
@@ -21,10 +21,9 @@ class AboutsController < ApplicationController
   end
 
   def update
-    
     respond_to do |format|
       if @about.update(about_params)
-        format.html { redirect_to about_path, success: success_message(@about, :updated) }
+        format.html { redirect_to about_page_path, success: success_message(@about, :updated) }
         format.js
       else
         flash[:error] = error_message

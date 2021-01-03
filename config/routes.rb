@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get :about, as: :about, to: "pages#about"
+  get :about, as: :about_page, to: "pages#about"
   resources :abouts, only: %i[new create edit update]
 end
