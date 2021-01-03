@@ -1,13 +1,33 @@
 require "test_helper"
 
 class AboutFlowsTest < ActionDispatch::IntegrationTest
-  test "can view about" do
+  test "requires authentication" do
+    about = create :about
+    requires_authentication { get new_about_path }
+    requires_authentication { get edit_about_path(about) }
+
+    requires_authentication do
+      post abouts_path,
+        params: {
+          about: { body: Faker::Lorem.paragraph }
+        }
+    end
+
+    requires_authentication do
+      put about_path(about),
+        params: {
+          about: { body: Faker::Lorem.paragraph }
+        }
+    end
+  end
+
+  test "as a visitor, I can view the About page" do
     get "/about"
     assert_response :success
   end
 
-  test "can create about" do
-    sign_in
+  test "as an administrator, I can create an About if one doesn't exist" do
+    sign_in admin_user
 
     get "/abouts/new"
     assert_response :success
@@ -17,14 +37,15 @@ class AboutFlowsTest < ActionDispatch::IntegrationTest
         about: { body: Faker::Lorem.paragraphs(number: 3).join("\s") }
       }
     assert_response :redirect
+    assert_redirected_to about_page_path
     follow_redirect!
     assert_response :success
     assert flash[:success].present?
     assert_template :about
   end
 
-  test "prompted with error on failed about creation" do
-    sign_in
+  test "as an administrator, I am presented with errors when creating an About fails" do
+    sign_in admin_user
 
     post "/abouts",
       params: {
@@ -35,10 +56,10 @@ class AboutFlowsTest < ActionDispatch::IntegrationTest
     assert flash[:error].present?
   end
 
-  test "can update about" do
+  test "as an administrator, I can update an existing About page" do
     about = create :about
 
-    sign_in
+    sign_in admin_user
 
     get "/abouts/#{about.id}/edit"
     assert_response :success
@@ -49,15 +70,18 @@ class AboutFlowsTest < ActionDispatch::IntegrationTest
       }
 
     assert_response :redirect
+    assert_redirected_to about_page_path
     follow_redirect!
     assert_response :success
     assert flash[:success].present?
     assert_template :about
+    
   end
 
-  test "prompted with error on failed about edit" do
+  test "as an administrator, I am presented with errors when editing an About page" do
     about = create :about
-    sign_in
+    
+    sign_in admin_user
 
     put "/abouts/#{about.id}",
       params: {
