@@ -17,13 +17,22 @@ module Support
     end
     
     def requires_authentication
-      if block_given?
-        yield
-        assert_redirected_to '/users/sign_in'
-        assert_not flash[:alert].nil?
-      else
-        raise ArgumentError, 'Block missing. Example: requires_authentication {get edit_object_path(object)}'
-      end
+      raise ArgumentError, 'Block missing. Example: requires_authentication { get edit_object_path(object) }' unless block_given?
+
+      yield
+      
+      assert_redirected_to '/users/sign_in'
+      assert_not flash[:alert].nil?  
     end
+
+    def requires_authorization
+      raise ArgumentError, 'Block missing. Example: requires_authorization { get edit_object_path(object) }' unless block_given?
+
+      yield
+
+      assert_redirected_to root_path
+      assert_not flash[:alert].nil?
+    end
+    
   end
 end

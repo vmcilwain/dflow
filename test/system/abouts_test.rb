@@ -1,7 +1,7 @@
 require "application_system_test_case"
 
 class AboutsTest < ApplicationSystemTestCase
-  test "as a visitor, I can  view about without a titler" do
+  test "as a visitor, I can view About without a title" do
     body = Faker::Lorem.words(number: 5).join("\s")
 
     create :about, body: body
@@ -15,7 +15,7 @@ class AboutsTest < ApplicationSystemTestCase
     assert has_content? body
   end
 
-  test "as a visitor, I can view about with a title" do
+  test "as a visitor, I can view About with a title" do
     title = Faker::Lorem.words(number: 3).join("\s")
     body = Faker::Lorem.words(number: 5).join("\s")
 
@@ -30,7 +30,7 @@ class AboutsTest < ApplicationSystemTestCase
     assert has_content? body
   end
 
-  test "as an administrator, I have the create link available if there isn't an about previously created" do
+  test "as an administrator, I have the create link available if there isn't an About previously created" do
     new_session admin_user
 
     visit about_page_path
@@ -39,7 +39,7 @@ class AboutsTest < ApplicationSystemTestCase
     assert_not has_link? :Edit
   end
 
-  test "as an administrator, I have the Update link available if there is an about previously created" do
+  test "as an administrator, I have the Update link available if there is an About previously created" do
     create :about
 
     new_session admin_user
@@ -48,6 +48,16 @@ class AboutsTest < ApplicationSystemTestCase
 
     assert has_link? :Edit
     assert_not has_link? :Create
+  end
+
+  test "as a visitor, I am unauthorized to create an About" do
+    create :about
+
+    new_session
+
+    visit new_about_path
+
+    assert_unauthorized_user
   end
 
   test "as an administrator, I can create an About " do
@@ -62,7 +72,7 @@ class AboutsTest < ApplicationSystemTestCase
 
     click_button "Create About"
 
-    assert has_css? ".alert.alert-dismissible.alert-success"
+    assert_success_alert
     assert has_content? text
   end
 
@@ -75,7 +85,17 @@ class AboutsTest < ApplicationSystemTestCase
 
     click_button "Create About"
 
-    assert has_css? ".alert.alert-dismissible.alert-danger"
+    assert_error_alert
+  end
+
+  test "as a visitor, I am unauthorized to update an existing About" do
+    about = create :about
+
+    new_session
+
+    visit edit_about_path(about)
+
+    assert_unauthorized_user
   end
 
   test "as an administrator, I can update an existing About" do
@@ -91,7 +111,7 @@ class AboutsTest < ApplicationSystemTestCase
 
     click_button "Update About"
 
-    assert has_css? ".alert.alert-dismissible.alert-success"
+    assert_success_alert
   end
 
   test "as an administrator, I should be told why an About failed to update" do
@@ -107,6 +127,6 @@ class AboutsTest < ApplicationSystemTestCase
 
     click_button "Update About"
 
-    assert has_css? ".alert.alert-dismissible.alert-danger"
+    assert_error_alert
   end
 end

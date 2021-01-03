@@ -3,6 +3,7 @@ require "test_helper"
 class AboutFlowsTest < ActionDispatch::IntegrationTest
   test "requires authentication" do
     about = create :about
+
     requires_authentication { get new_about_path }
     requires_authentication { get edit_about_path(about) }
 
@@ -14,6 +15,29 @@ class AboutFlowsTest < ActionDispatch::IntegrationTest
     end
 
     requires_authentication do
+      put about_path(about),
+        params: {
+          about: { body: Faker::Lorem.paragraph }
+        }
+    end
+  end
+
+  test "requires authorization" do
+    about = create :about
+
+    sign_in
+
+    requires_authorization { get new_about_path }
+    requires_authorization { get edit_about_path(about) }
+
+    requires_authorization do
+      post abouts_path,
+        params: {
+          about: { body: Faker::Lorem.paragraph }
+        }
+    end
+
+    requires_authorization do
       put about_path(about),
         params: {
           about: { body: Faker::Lorem.paragraph }
