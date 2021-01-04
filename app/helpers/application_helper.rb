@@ -66,17 +66,11 @@ module ApplicationHelper
 
     output << opts[:links].join(" | ") if opts[:links]
     
+    output << "<p class='text-muted'>#{opts[:description]}</p>" unless opts[:description].blank?
+
     output << '<br />' if opts[:links]
 
-    output << '<hr />' if opts.fetch(:separator){true}
-
-    unless opts[:description].blank?
-      output << <<-FIN
-      <p class="jumbotron">
-        #{opts[:description]}
-      </p>
-      FIN
-    end
+    output << '<hr />' if opts.fetch(:separator){ true }
 
     output << "</header>"
     output.html_safe

@@ -54,7 +54,7 @@ class ApplicationHelperTest < ActionView::TestCase
     title = Faker::Lorem.word
     description = Faker::Lorem.paragraph
     
-    assert_dom_equal "<header><h1>#{title}</h1><hr />      <p class=\"jumbotron\">\n        #{description}\n      </p>\n</header>", header(title: title, description: description)
+    assert_dom_equal %{<header><h1>#{title}</h1><p class='text-muted'>#{description}</p><hr /></header>}, header(title: title, description: description)
   end
 
   test 'should return a sub header' do
