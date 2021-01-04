@@ -65,6 +65,7 @@ end
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.7'
 gem 'pundit', '~> 2.1'
+gem 'email_validator', '~> 2.2', require: 'email_validator/strict'
 # gem 'ransack', '~> 2.4'
 # gem 'will_paginate', '~> 3.3'
 # gem 'font-awesome-rails', '~> 4.7'
