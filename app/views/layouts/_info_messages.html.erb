@@ -3,12 +3,12 @@
 <% if flash[:notice] %>
   <div class="alert alert-dismissible alert-info">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <h4 class="alert-heading">Warning!</h4>
+    <h4 class="alert-heading">Notice!</h4>
     <p class="mb-0"><%= flash[:notice] %></p>
   </div>
 <% elsif flash[:alert] %>
   <div class="alert alert-dismissible alert-warning">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Heads up!</strong> <%= flash[:alert] %>
+    <strong>Alert</strong> <%= flash[:alert] %>
   </div>
 <% end %>
