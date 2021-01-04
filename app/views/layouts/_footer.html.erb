@@ -1,33 +1,41 @@
-%footer.footer-distributed
-  .footer-left
-    %h3
+<footer class="footer-distributed">
+  <div class="footer-left">
+    <h3>
       Company
-      %span logo
-    %p.footer-links
-      %a{:href => "#"} Home
-      ·
-      %a{:href => "#"} Blog
-      ·
-      %a{:href => "#"} Pricing
-      ·
-      %a{:href => "#"} About
-      ·
-      %a{:href => "#"} Faq
-      ·
-      %a{:href => "#"} Contact
-    %p.footer-company-name Company Name &copy; #{Date.today.year}
-    .footer-icons
-      %a{:href => "#"}
-        %i.fa.fa-facebook
-      %a{:href => "#"}
-        %i.fa.fa-twitter
-      %a{:href => "#"}
-        %i.fa.fa-linkedin
-      %a{:href => "#"}
-        %i.fa.fa-github
-  .footer-right
-    %p Contact Us
-    %form{:action => "#", :method => "post"}
-      %input{:name => "email", :placeholder => "Email", :type => "text"}/
-      %textarea{:name => "message", :placeholder => "Message"}
-      %button Send
+      <span>logo</span>
+    </h3>
+    <p class="footer-links">
+      <%= link_to :Home, "#" %> ·
+      <%= link_to :Blog, "#" %> ·
+      <%= link_to :Pricing, "#" %> ·
+      <%= link_to :About, about_page_path %> ·
+      <%= link_to :FAQ, "#" %> ·
+      <%= link_to :Contact, "#" %>
+    </p>
+    <p class="footer-company-name">
+      Company Name &copy; #{Date.today.year}
+    </p>
+    <div class="footer-icons">
+      <%= link_to '#' do %>
+        <i class="fa fa-facebook"></i>
+      <% end %>
+      <%= link_to '#' do %>
+        <i class="fa fa-twitter"></i>
+      <% end %>
+      <%= link_to '#' do %>
+        <i class="fa fa-linkedin"></i>
+      <% end %>
+      <%= link_to '#' do %>
+        <i class="fa fa-github"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="footer-right">
+    <p>Contact Us</p>
+    <%= form_with url: "#", method: :post do |f| %>
+      <%= f.text_field_tag :email, nil, placeholder: "Email" %>
+      <%= f.text_area_tag :message, nil, placeholder: "Message" %>
+      <%= f.submit_tag :Send %>
+    <% end %>
+  </div>
+</footer>
