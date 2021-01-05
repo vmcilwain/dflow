@@ -1,17 +1,17 @@
 <%= form_with model: @about do |f| %>
   <%= render "layouts/error_messages", obj: @about %>
 
-  <section class="form-group">
+  <fieldset class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: "form-control" %>
-  </section>
+  </fieldset>
 
-  <section class="form-group">
+  <fieldset class="form-group">
     <%= f.label :body %>
-    <section class="jumbotron">
+    <fieldset class="jumbotron">
       <%= f.rich_text_area :body%>
-    </section>
-  </section>
+    </fieldset>
+  </fieldset>
 
   <section>
     <%= f.submit class: "btn btn-primary" %>
