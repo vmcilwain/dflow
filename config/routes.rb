@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   get :about, as: :about_page, to: "pages#about"
+
   resources :abouts, only: %i[new create edit update]
+  resources :contact_mes, only: %i[new create]
 end
