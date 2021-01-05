@@ -2,6 +2,8 @@
   <%= header title: "Contact Me", description: "Send a message for personal response" %>
 
   <%= form_with model: @contact_me do |f| %>
+    <%= render "layouts/error_messages", obj: @contact_me %>
+
     <fieldset class="form-group">
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control', autofocus: true %>
