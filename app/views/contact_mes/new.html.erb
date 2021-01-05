@@ -1,0 +1,25 @@
+<div class="container">
+  <%= header title: "Contact Me", description: "Send a message for personal response" %>
+
+  <%= form_with model: @contact_me do |f| %>
+    <fieldset class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', autofocus: true %>
+    </fieldset>
+    
+    <fieldset class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control' %>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <%= f.label :message %>
+      <%= f.text_area :message, class: 'form-control', rows: 10 %>
+    </fieldset>
+
+    <section>
+      <%= f.submit :Send, class: 'btn btn-primary' %>
+      <%= link_to :Cancel, :back, class: 'btn btn-secondary' %>
+    </section>
+  <% end %>
+</div>
