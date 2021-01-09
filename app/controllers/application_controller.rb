@@ -12,15 +12,15 @@ class ApplicationController < ActionController::Base
   private
   
   def error_message
-    "There were errors!"
+    I18n.t('alert.error')
   end
   
   def success_message(object, status=:created)
-    "#{object.class.name.titleize} was successfully #{status.to_s}"
+    I18n.t('alert.success', class_name: object.class.name.titleize, status: status.to_s)
   end
 
   def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
+    flash[:alert] = I18n.t('alert.authorization')
     redirect_to root_path
   end
 
