@@ -7,8 +7,9 @@ class ContactMesController < ApplicationController
   
   def create
     @contact_me = ContactMe.new(contact_me_params)
-
+    
     if @contact_me.save
+      NotificationMailer.with(contact_me: @contact_me).contact_me_email.deliver_now
       redirect_to root_path, success: success_message(@contact_me)
     else
       flash[:error] = error_message
