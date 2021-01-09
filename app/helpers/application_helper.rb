@@ -75,28 +75,4 @@ module ApplicationHelper
     output << "</header>"
     output.html_safe
   end
-  
-
-
-  # def sub_header(opts={})
-  #   render 'shared/components/sub_header',  title: opts.fetch(:title){""}.to_s, 
-  #                                           description: opts[:description],
-  #                                           links: opts[:links],
-  #                                           separator: opts.fetch(:separator){true}
-  # end
-
-  # def search_form(opts={})
-  #   render 'shared/components/search_form', url: opts.fetch(:url){""}.to_s,
-  #                                           attribute: opts.fetch(:attribute),
-  #                                           placeholder: opts.fetch(:placeholder){""}.to_s,
-  #                                           label: opts.fetch(:label){opts.fetch(:attribute)}.to_s,
-  #                                           no_label: opts.fetch(:no_label){false},
-  #                                           button_name: opts.fetch(:button_name){:Search}.to_s
-  # end
-  
-  # def paginate(opts={})
-  #   render 'shared/components/paginator', records: opts.fetch(:records){[]},
-  #                                         _class: opts.fetch(:class){'apple_pagination'},
-  #                                         extra_info: opts.fetch(:extra_info){true}
-  # end
 end
