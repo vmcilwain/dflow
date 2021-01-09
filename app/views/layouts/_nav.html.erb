@@ -26,16 +26,18 @@
           <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
         <% end %>
       </li>
-      <%# <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
-        </div>
-      </li> %>
+      <% if Rails.env.development?  %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Development</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/rails/mailers">Mailer Previews</a>
+            <%# <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a> %>
+          </div>
+        </li>
+      <% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
