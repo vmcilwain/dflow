@@ -15,5 +15,7 @@ namespace :load_data do
     admin_role.users << user
     
     About.create title: ["ad", "aut", "sed", "saepe", "qui"].join("\s"), body: ["Repellat impedit doloremque. Ex quaerat et. Ab dooorum quibusdam.", "Non ullam est. Iure aut ipsam. Delectus qui praesentium.", "Harum eum facere. Illum quos nemo. Similique sint inventore.", "Moorum quibusdam.", "Non ullam est. Iure aut ipsam. Delectus qui praesentium.", "Harum eum facere. Illum quos nemo. Similique sint inventore.", "Mollitia esse qui. Enim neque ea. Aliquam aperiam dolores.", "Facilis sit est. Dolor sint magnam. Voluptatem quidem qui."].join("<br />")
+
+    ContactMe.create name: "John Rambo".join("\s"), email: "jrambo@example.com", message: ["Repellat impedit doloremque. Ex quaerat et. Ab dooorum quibusdam.", "Non ullam est. Iure aut ipsam. Delectus qui praesentium.", "Harum eum facere. Illum quos nemo. Similique sint inventore.", "Moorum quibusdam.", "Non ullam est. Iure aut ipsam. Delectus qui praesentium.", "Harum eum facere. Illum quos nemo. Similique sint inventore.", "Mollitia esse qui. Enim neque ea. Aliquam aperiam dolores.", "Facilis sit est. Dolor sint magnam. Voluptatem quidem qui."].join("<br />")
   end
 end
