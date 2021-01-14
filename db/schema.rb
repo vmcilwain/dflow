@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_04_010201) do
+ActiveRecord::Schema.define(version: 2021_01_14_222632) do
 
   create_table "abouts", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(version: 2021_01_04_010201) do
   create_table "permissions", charset: "utf8mb4", force: :cascade do |t|
     t.integer "role_id", default: 0, null: false
     t.integer "user_id", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "posts", charset: "utf8mb4", force: :cascade do |t|
+    t.string "subject", default: "", null: false
+    t.text "content"
+    t.string "video_url", limit: 500
+    t.integer "created_by"
+    t.integer "updated_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
