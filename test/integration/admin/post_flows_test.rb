@@ -28,7 +28,7 @@ class Admin::PostFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "as a administrator, I can create a Post" do
+  test "as a administrator, I can create a post" do
     sign_in admin_user
 
     get "/admin/posts/new"
@@ -43,12 +43,38 @@ class Admin::PostFlowsTest < ActionDispatch::IntegrationTest
     assert flash[:success].present?
   end
 
-  test "as an administrator, I am presented with errors when creating a Post fails" do
+  test "as an administrator, I am presented with errors when creating a post fails" do
     sign_in admin_user
 
     post "/admin/posts", params: { post: attributes_for(:post, content: nil) }
     assert_response :ok
-    assert_template :new
+    assert flash[:error].present?
+  end
+
+  test "as a administrator, I can update a post" do
+    post = create :post
+
+    sign_in admin_user
+
+    get "/admin/posts/#{post.id}/edit"
+    assert_response :success
+
+    put "/admin/posts/#{post.id}", params: { post: { subject: "Test Subject" } }
+
+    assert_response :redirect
+    assert_redirected_to edit_admin_post_path(post)
+    follow_redirect!
+    assert_response :success
+    assert flash[:success].present?
+  end
+
+  test "as an administrator, I am presented with errors when updating a post fails" do
+    post = create :post
+
+    sign_in admin_user
+
+    put "/admin/posts/#{post.id}", params: { post: attributes_for(:post, title: nil) }
+    assert_response :ok
     assert flash[:error].present?
   end
 end
