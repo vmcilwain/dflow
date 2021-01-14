@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_01_14_222632) do
   end
 
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
-    t.string "subject", default: "", null: false
+    t.string "title", default: "", null: false
     t.text "content"
     t.string "video_url", limit: 500
     t.integer "created_by"
