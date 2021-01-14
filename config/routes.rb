@@ -9,4 +9,10 @@ Rails.application.routes.draw do
 
   resources :abouts, only: %i[new create edit update]
   resources :contact_mes, only: %i[new create]
+  resources :posts, only: %i[show]
+  
+  namespace :admin do
+    resources :posts, only: %i[new create edit update destroy]
+  end
+  
 end
