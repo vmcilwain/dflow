@@ -1,3 +1,4 @@
+# TODO move admin actions to admin namespace
 class AboutsController < ApplicationController
   before_action :about, only: %i[edit update]
   
