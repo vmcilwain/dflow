@@ -77,4 +77,17 @@ class Admin::PostFlowsTest < ActionDispatch::IntegrationTest
     assert_response :ok
     assert flash[:error].present?
   end
+
+  test "as am administrator, I can destroy a post" do
+    post = create :post
+
+    sign_in admin_user
+
+    delete "/admin/posts/#{post.id}"
+    assert_response :redirect
+    assert_redirected_to admin_posts_path
+    follow_redirect!
+    assert_response :success
+    assert flash[:success].present?
+  end
 end

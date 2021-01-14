@@ -30,7 +30,8 @@ class Admin::PostsController < Admin::AdminController
   end
   
   def destroy
-    
+    @post.destroy
+    redirect_to admin_posts_path, success: success_message(@post)
   end
 
   private
