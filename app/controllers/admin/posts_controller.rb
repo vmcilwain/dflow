@@ -20,12 +20,13 @@ class Admin::PostsController < Admin::AdminController
     end
   end
   
-  def edit
-    
-  end
-  
   def update
-    
+    if @post.update(post_params)
+      redirect_to edit_admin_post_path(@post), success: success_message(@post)
+    else
+      flash[:error] = error_message
+      render :edit
+    end
   end
   
   def destroy
