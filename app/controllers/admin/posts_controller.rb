@@ -1,4 +1,5 @@
 class Admin::PostsController < Admin::AdminController
+  before_action :authorize_user, only: %i[index new create]
   before_action :post, only: %i[edit update destroy]
   
   def index
@@ -38,9 +39,14 @@ class Admin::PostsController < Admin::AdminController
 
   def post
     @post = Post.find params[:id]
+    authorize @post
   end
 
   def post_params
     params.require(:post).permit(:title, :content, :vidoe_url)
+  end
+
+  def authorize_user
+    authorize Post
   end
 end

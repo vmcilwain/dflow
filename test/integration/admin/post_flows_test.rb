@@ -21,6 +21,27 @@ class Admin::PostFlowsTest < ActionDispatch::IntegrationTest
     requires_authentication { delete admin_post_path(post) }
   end
 
+  test "requires authorization" do
+    post = create :post
+
+    sign_in
+
+    requires_authorization { get admin_posts_path }
+    requires_authorization { get new_admin_post_path }
+
+    requires_authorization do
+      post admin_posts_path, params: { post: attributes_for(:post) }
+    end
+
+    requires_authorization { get edit_admin_post_path(post) }
+
+    requires_authorization do
+      put admin_post_path(post), params: { post: attributes_for(:post) }
+    end
+
+    requires_authorization { delete admin_post_path(post) }
+  end
+
   test "as an administrator, I can view a list of posts" do
     sign_in admin_user
 
