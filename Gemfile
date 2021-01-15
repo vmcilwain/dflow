@@ -58,6 +58,7 @@ group :test do
   gem 'shoulda', '~> 4.0'
   gem 'shoulda-matchers', '~> 4.0'
   gem 'webdrivers'
+  gem 'policy-assertions', '~> 0.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

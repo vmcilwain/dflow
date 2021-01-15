@@ -1,10 +1,9 @@
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
-# require_relative 'support/system_test_helper'
+require 'policy_assertions'
 require_relative 'support/system_helpers'
 require_relative 'support/integration_helpers'
-require_relative 'support/policy_assertions'
 
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
@@ -12,7 +11,6 @@ class ActiveSupport::TestCase
   include ActionView::Helpers::DateHelper
   include Support::SystemHelpers
   include Pundit
-  include Support::PolicyAssertions
 
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)

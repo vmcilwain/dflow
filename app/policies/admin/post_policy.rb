@@ -1,4 +1,4 @@
-class PostPolicy < ApplicationPolicy
+class Admin::PostPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -6,6 +6,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def new?
+    return false unless user
     user.role? :administrator
   end
 

@@ -128,6 +128,9 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
+    policy-assertions (0.2.0)
+      activesupport (>= 3.0.0)
+      pundit (>= 1.0.0)
     public_suffix (4.0.6)
     puma (5.1.1)
       nio4r (~> 2.0)
@@ -256,6 +259,7 @@ DEPENDENCIES
   mini_magick
   mysql2 (~> 0.5)
   pg
+  policy-assertions (~> 0.1)
   puma (~> 5.0)
   pundit (~> 2.1)
   rack-mini-profiler (~> 2.0)
