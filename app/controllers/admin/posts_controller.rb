@@ -1,18 +1,18 @@
 class Admin::PostsController < Admin::AdminController
   before_action :authorize_user, only: %i[index new create]
   before_action :post, only: %i[edit update destroy]
-  
+
   def index
     @posts = Post.all
   end
-  
+
   def new
     @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
-    
+
     if @post.save
       redirect_to edit_admin_post_path(@post), success: success_message(@post)
     else
@@ -20,7 +20,7 @@ class Admin::PostsController < Admin::AdminController
       render :new
     end
   end
-  
+
   def update
     if @post.update(post_params)
       redirect_to edit_admin_post_path(@post), success: success_message(@post)
@@ -29,7 +29,7 @@ class Admin::PostsController < Admin::AdminController
       render :edit
     end
   end
-  
+
   def destroy
     @post.destroy
     redirect_to admin_posts_path, success: success_message(@post)

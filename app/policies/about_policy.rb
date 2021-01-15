@@ -6,10 +6,10 @@ class AboutPolicy < ApplicationPolicy
   end
 
   def new?
-    user.has_role? :administrator
+    user.role? :administrator
   end
-  
-  alias_method :create?, :new?
-  alias_method :edit?, :new?
-  alias_method :update?, :new?
+
+  alias create? new?
+  alias edit? new?
+  alias update? new?
 end

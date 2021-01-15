@@ -6,12 +6,12 @@ class PostPolicy < ApplicationPolicy
   end
 
   def new?
-    user.has_role? :administrator
+    user.role? :administrator
   end
-  
-  alias_method :index?, :new?
-  alias_method :create?, :new?
-  alias_method :edit?, :new?
-  alias_method :update?, :new?
-  alias_method :destroy?, :new?
+
+  alias index? new?
+  alias create? new?
+  alias edit? new?
+  alias update? new?
+  alias destroy? new?
 end

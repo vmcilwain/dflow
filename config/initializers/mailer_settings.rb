@@ -1,4 +1,4 @@
-unless Rails.env.development? 
+unless Rails.env.development?
   ActionMailer::Base.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,

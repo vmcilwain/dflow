@@ -4,6 +4,6 @@ FactoryBot.define do
   end
 
   factory :admin_role, parent: :role do
-    name { "administrator" }
+    name { 'administrator' }
   end
 end

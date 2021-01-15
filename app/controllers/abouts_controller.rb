@@ -1,10 +1,10 @@
-# TODO move admin actions to admin namespace
+# TODO: move admin actions to admin namespace
 class AboutsController < ApplicationController
   before_action :about, only: %i[edit update]
-  
+
   def new
     authorize About
-    
+
     @about = About.new
   end
 
@@ -12,7 +12,7 @@ class AboutsController < ApplicationController
     authorize About
 
     @about = About.new(about_params)
-     
+
     respond_to do |format|
       if @about.save
         format.html { redirect_to about_page_path, success: success_message(@about) }
@@ -37,16 +37,15 @@ class AboutsController < ApplicationController
       end
     end
   end
-  
+
   private
 
   def about
     @about = About.find params[:id]
     authorize @about
   end
-  
+
   def about_params
     params.require(:about).permit(:title, :body)
   end
-  
 end
