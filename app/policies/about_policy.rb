@@ -7,6 +7,7 @@ class AboutPolicy < ApplicationPolicy
 
   def new?
     return false unless user
+    
     user.role? :administrator
   end
 

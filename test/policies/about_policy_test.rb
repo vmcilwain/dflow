@@ -9,42 +9,42 @@ class AboutPolicyTest < PolicyAssertions::Test
   end
 
   test 'new?' do
-    refute_permit nil, @policy, "new?"
-    refute_permit @user, @policy, "new?"
+    refute_permit nil, @policy, 'new?'
+    refute_permit @user, @policy, 'new?'
     
     add_user_to_role @user, @role
     @user.reload
 
-    assert_permit @user, @policy, "new?"
+    assert_permit @user, @policy, 'new?'
   end
 
   test 'create?' do
-    refute_permit nil, @policy, "create?"
-    refute_permit @user, @policy, "create?"
+    refute_permit nil, @policy, 'create?'
+    refute_permit @user, @policy, 'create?'
     
     add_user_to_role @user, @role
     @user.reload
 
-    assert_permit @user, @policy, "create?"
+    assert_permit @user, @policy, 'create?'
   end
 
   test 'edit?' do
-    refute_permit nil, @policy, "edit?"
-    refute_permit @user, @policy, "edit?"
+    refute_permit nil, @policy, 'edit?'
+    refute_permit @user, @policy, 'edit?'
     
     add_user_to_role @user, @role
     @user.reload
 
-    assert_permit @user, @policy, "edit?"
+    assert_permit @user, @policy, 'edit?'
   end
 
   test 'update?' do
-    refute_permit nil, @policy, "update?"
-    refute_permit @user, @policy, "update?"
+    refute_permit nil, @policy, 'update?'
+    refute_permit @user, @policy, 'update?'
     
     add_user_to_role @user, @role
     @user.reload
 
-    assert_permit @user, @policy, "update?"
+    assert_permit @user, @policy, 'update?'
   end
 end

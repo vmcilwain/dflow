@@ -9,62 +9,62 @@ class Admin::PostPolicyTest < PolicyAssertions::Test
   end
 
   test 'index?' do
-    refute_permit nil, @policy, "index?"
-    refute_permit @user, @policy, "index?"
+    refute_permit nil, @policy, 'index?'
+    refute_permit @user, @policy, 'index?'
     
     add_user_to_role @user, @role
     @user.reload
 
-    assert_permit @user, @policy, "index?"
+    assert_permit @user, @policy, 'index?'
   end
 
   test 'new?' do
-    refute_permit nil, @policy, "new?"
-    refute_permit @user, @policy, "new?"
+    refute_permit nil, @policy, 'new?'
+    refute_permit @user, @policy, 'new?'
     
     add_user_to_role @user, @role
     @user.reload
 
-    assert_permit @user, @policy, "new?"
+    assert_permit @user, @policy, 'new?'
   end
 
   test 'create?' do
-    refute_permit nil, @policy, "create?"
-    refute_permit @user, @policy, "create?"
+    refute_permit nil, @policy, 'create?'
+    refute_permit @user, @policy, 'create?'
     
     add_user_to_role @user, @role
     @user.reload
 
-    assert_permit @user, @policy, "create?"
+    assert_permit @user, @policy, 'create?'
   end
 
   test 'edit?' do
-    refute_permit nil, @policy, "edit?"
-    refute_permit @user, @policy, "edit?"
+    refute_permit nil, @policy, 'edit?'
+    refute_permit @user, @policy, 'edit?'
     
     add_user_to_role @user, @role
     @user.reload
 
-    assert_permit @user, @policy, "edit?"
+    assert_permit @user, @policy, 'edit?'
   end
 
   test 'update?' do
-    refute_permit nil, @policy, "update?"
-    refute_permit @user, @policy, "update?"
+    refute_permit nil, @policy, 'update?'
+    refute_permit @user, @policy, 'update?'
     
     add_user_to_role @user, @role
     @user.reload
 
-    assert_permit @user, @policy, "update?"
+    assert_permit @user, @policy, 'update?'
   end
 
   test 'destroy?' do
-    refute_permit nil, @policy, "destroy?"
-    refute_permit @user, @policy, "destroy?"
+    refute_permit nil, @policy, 'destroy?'
+    refute_permit @user, @policy, 'destroy?'
     
     add_user_to_role @user, @role
     @user.reload
 
-    assert_permit @user, @policy, "destroy?"
+    assert_permit @user, @policy, 'destroy?'
   end
 end
