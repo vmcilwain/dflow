@@ -22,3 +22,7 @@ admin_role.users << user
 About.create title: Faker::Lorem.words(number: 5).join("\s"), body: Faker::Lorem.paragraphs(number: 5).join('<br />')
 
 ContactMe.create name: Faker::Name.name, email: Faker::Internet.email, message: Faker::Lorem.paragraphs(number: 5).join('<br />')
+
+5.times do
+  Post.create title: Faker::Lorem.words(number: 5).join("\s"), content: Faker::Lorem.paragraphs(number: 5).join('<br />'), created_by: user.id
+end
