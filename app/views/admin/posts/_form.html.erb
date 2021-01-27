@@ -1,0 +1,25 @@
+<%= form_with model: @post, url: url, method: method do |f| %>
+  <%= render "layouts/error_messages", obj: @post %>
+
+  <fieldset class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control", autofocus: true, placeholder: "How the soothing sound of whales makes me feel" %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <%= f.label :video_url %>
+    <%= f.text_field :video_url, class: "form-control", placeholder: "http://www.youtube.com/abcxzy" %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <%= f.label :content %>
+    <section class="jumbotron">
+      <%= f.rich_text_area :content %>
+    </section>
+  </fieldset>
+
+  <section>
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to :Back, :back, class: "btn btn-secondary" %>
+  </section>
+<% end %>

@@ -1,0 +1,5 @@
+<main class="container">
+  <%= header title: "Edit Post: #{@post.id}", description: "Write whats on your mind in a professional manner"%>
+
+  <%= render "form", url: admin_post_path(@post), method: :put %>
+</main>
