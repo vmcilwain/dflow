@@ -61,6 +61,17 @@ module ApplicationHelper
     end
   end
 
+  # Strip html tags and truncate text
+  # @param [Hash] opts the options to create a sanitized & truncated body of text.
+  # @option opts [String] :text The text to be processed
+  # @option opts [Integer] :size The amount of text to truncate to
+  # @option opts [String] :separator for creating a natural truncation at the end of a word
+  def sanitize_and_truncate(opts={})
+      text = opts.fetch(:text)
+      sanitize text.to_s.truncate(opts.fetch(:size, 80), separator: opts.fetch(:separator, /\s/))
+  end
+
+
   # Create a template header
   # @param [Hash] opts the options to create a header with.
   # @option opts [String] :title The title

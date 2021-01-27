@@ -31,6 +31,10 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal 'unknown', us_date(nil)
   end
 
+  test "should return a sanitized truncated version of text" do
+    skip
+  end
+
   test 'should return a header' do
     title = Faker::Lorem.word
 
