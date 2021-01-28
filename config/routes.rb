@@ -13,6 +13,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "dashboards#index"
-    resources :posts, only: %i[index new create edit update destroy]
+    resources :posts, only: %i[index new create show edit update destroy]
   end
 end

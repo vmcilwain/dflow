@@ -13,6 +13,7 @@ class Admin::PostPolicy < ApplicationPolicy
 
   alias index? new?
   alias create? new?
+  alias show? new?
   alias edit? new?
   alias update? new?
   alias destroy? new?

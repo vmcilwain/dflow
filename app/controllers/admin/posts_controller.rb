@@ -1,6 +1,6 @@
 class Admin::PostsController < Admin::AdminController
   before_action :authorize_user, only: %i[index new create]
-  before_action :post, only: %i[edit update destroy]
+  before_action :post, only: %i[show edit update destroy]
 
   def index
     @posts = Post.all
@@ -14,7 +14,7 @@ class Admin::PostsController < Admin::AdminController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to edit_admin_post_path(@post), success: success_message(@post)
+      redirect_to admin_post_path(@post), success: success_message(@post)
     else
       flash[:error] = error_message
       render :new
@@ -23,7 +23,7 @@ class Admin::PostsController < Admin::AdminController
 
   def update
     if @post.update(post_params)
-      redirect_to edit_admin_post_path(@post), success: success_message(@post)
+      redirect_to admin_post_path(@post), success: success_message(@post)
     else
       flash[:error] = error_message
       render :edit

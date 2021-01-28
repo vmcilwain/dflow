@@ -38,6 +38,16 @@ class Admin::PostPolicyTest < PolicyAssertions::Test
     assert_permit @user, @policy, 'create?'
   end
 
+  test 'show?' do
+    refute_permit nil, @policy, 'show?'
+    refute_permit @user, @policy, 'show?'
+    
+    add_user_to_role @user, @role
+    @user.reload
+
+    assert_permit @user, @policy, 'show?'
+  end
+
   test 'edit?' do
     refute_permit nil, @policy, 'edit?'
     refute_permit @user, @policy, 'edit?'

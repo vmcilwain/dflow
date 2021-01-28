@@ -12,6 +12,8 @@ class Admin::PostFlowsTest < ActionDispatch::IntegrationTest
       post admin_posts_path, params: { post: attributes_for(:post) }
     end
 
+    requires_authentication { get admin_post_path(post) }
+
     requires_authentication { get edit_admin_post_path(post) }
 
     requires_authentication do
@@ -32,6 +34,8 @@ class Admin::PostFlowsTest < ActionDispatch::IntegrationTest
     requires_authorization do
       post admin_posts_path, params: { post: attributes_for(:post) }
     end
+    
+    requires_authorization { get admin_post_path(post) }
 
     requires_authorization { get edit_admin_post_path(post) }
 
@@ -58,7 +62,7 @@ class Admin::PostFlowsTest < ActionDispatch::IntegrationTest
     post '/admin/posts', params: { post: attributes_for(:post) }
 
     assert_response :redirect
-    assert_redirected_to edit_admin_post_path(Post.last)
+    assert_redirected_to admin_post_path(Post.last)
     follow_redirect!
     assert_response :success
     assert flash[:success].present?
@@ -72,6 +76,15 @@ class Admin::PostFlowsTest < ActionDispatch::IntegrationTest
     assert flash[:error].present?
   end
 
+  test 'as an administrator, I can view a post' do
+    post = create :post
+
+    sign_in admin_user
+
+    get "/admin/posts/#{post.id}"
+    assert_response :success
+  end
+
   test 'as a administrator, I can update a post' do
     post = create :post
 
@@ -83,7 +96,7 @@ class Admin::PostFlowsTest < ActionDispatch::IntegrationTest
     put "/admin/posts/#{post.id}", params: { post: { subject: 'Test Subject' } }
 
     assert_response :redirect
-    assert_redirected_to edit_admin_post_path(post)
+    assert_redirected_to admin_post_path(post)
     follow_redirect!
     assert_response :success
     assert flash[:success].present?
