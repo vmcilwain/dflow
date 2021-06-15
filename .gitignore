@@ -40,3 +40,4 @@ yarn-debug.log*
 /config/credentials/test.key
 
 /config/credentials/staging.key
+/db_password.txt

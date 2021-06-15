@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.0'
+gem 'rails', '~> 6.1.3.2'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5'
-gem 'pg'
+# gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -34,8 +34,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'debase', '~> 0.2'
   gem 'factory_bot_rails', '~> 6.1'
   gem 'faker', '~> 2.15'
+  gem 'ruby-debug-ide', '~> 0.7'
 end
 
 group :development do
